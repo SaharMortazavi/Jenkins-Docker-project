@@ -25,6 +25,7 @@ pipeline {
         stage('build') {
             steps {
                 echo 'building...'
+                sh 'pwd'
                 sh 'mvn package'
                 sh 'pwd'
                 echo 'finished building'
