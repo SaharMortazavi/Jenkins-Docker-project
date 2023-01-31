@@ -32,6 +32,12 @@ pipeline {
             }
         }
 
+        stage('deploy') {
+            steps {
+                sh 'cp ./target/ROOT.war /artifacts'
+            }
+        }
+
 //         stage('test') {
 //             steps {
 //                 echo 'starting test.....'
@@ -49,11 +55,11 @@ pipeline {
 //         }
     }
 
-    post {
-        always {
-            echo 'generating test report....'
-            junit 'target/*reports/**/*.xml'
-            echo 'test report generated'
-        }
-    }
+//     post {
+//         always {
+//             echo 'generating test report....'
+//             junit 'target/*reports/**/*.xml'
+//             echo 'test report generated'
+//         }
+//     }
 }
