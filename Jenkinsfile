@@ -24,17 +24,21 @@ pipeline {
 
         stage('build') {
             steps {
-                echo 'building...'
-                sh 'pwd'
-                sh 'mvn package'
-                sh 'pwd'
-                echo 'finished building'
+                dir('backend'){
+                    echo 'building...'
+                    sh 'pwd'
+                    sh 'mvn package'
+                    sh 'pwd'
+                    echo 'finished building'
+                }
             }
         }
 
         stage('deploy') {
             steps {
-                sh 'cp ./target/ROOT.war /artifacts'
+                dir('backend'){
+                    sh 'cp ./target/ROOT.war /artifacts'
+                }
             }
         }
 
