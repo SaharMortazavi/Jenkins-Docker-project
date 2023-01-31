@@ -8,7 +8,6 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                sh 'mvn clean'
                 echo 'github project is downloading'
                 git branch: 'master' , credentialsId: 'Credential1', url: 'https://github.com/SaharMortazavi/Jenkins-Docker-project.git'
                 sh 'pwd'
