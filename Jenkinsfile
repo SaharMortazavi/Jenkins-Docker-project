@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh 'mvn clean'
                 echo 'github project is downloading'
-                git branch: 'master' , credentialsId: 'Credential1', url: 'https://github.com/SaharMortazavi/SysProgUppgoft2.git'
+                git branch: 'master' , credentialsId: 'Credential1', url: 'https://github.com/SaharMortazavi/Jenkins-Docker-project.git'
                 sh 'pwd'
             }
         }
