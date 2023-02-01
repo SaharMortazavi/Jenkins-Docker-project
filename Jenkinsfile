@@ -36,7 +36,6 @@ pipeline {
                     echo 'start test-compiling...'
                     sh 'pwd'
                     sh 'mvn test-compile'
-                    sh 'pwd'
                 }
             }
         }
@@ -70,16 +69,17 @@ pipeline {
                 }
             }
         }
-        post{
-            always{
-                echo 'pipeline is finished now'
-            }
-            success{
-                echo 'blow your trumpets Gabriel'
-            }
-            failure{
-                echo 'please consider reviewing the code'
-            }
+
+    }
+    post{
+        always{
+            echo "pipeline is finished now and it took ${currentBuild.durationString.minus(' and counting')}."
+        }
+        success{
+            echo 'blow your trumpets Gabriel.'
+        }
+        failure{
+            echo 'please consider reviewing the code.'
         }
     }
 
