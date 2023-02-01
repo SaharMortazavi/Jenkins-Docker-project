@@ -13,7 +13,7 @@ pipeline {
                 sh 'pwd'
             }
         }
-        stage('changing directory'){
+        stage('cleaning'){
             steps {
                 dir('backend'){
                     sh 'pwd'
@@ -27,7 +27,6 @@ pipeline {
                     echo 'start compiling...'
                     sh 'pwd'
                     sh 'mvn compile'
-                    sh 'pwd'
                 }
             }
         }
@@ -47,7 +46,6 @@ pipeline {
                     echo 'start testing...'
                     sh 'pwd'
                     sh 'mvn test'
-                    sh 'pwd'
                 }
             }
         }
@@ -59,7 +57,6 @@ pipeline {
                     echo 'building...'
                     sh 'pwd'
                     sh 'mvn package'
-                    sh 'pwd'
                     echo 'finished building'
                 }
             }
@@ -69,7 +66,19 @@ pipeline {
             steps {
                 dir('backend'){
                     sh 'cp ./target/ROOT.war /artifacts'
+                    echo 'now war file deployed and tomcat will load it.'
                 }
+            }
+        }
+        post{
+            always{
+                echo 'pipeline is finished now'
+            }
+            success{
+                echo 'blow your trumpets Gabriel'
+            }
+            failure{
+                echo 'please consider reviewing the code'
             }
         }
     }
