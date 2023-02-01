@@ -72,14 +72,6 @@ pipeline {
                 }
             }
         }
-//
-//         stage('package') {
-//             steps {
-//                 echo 'packaging...'
-//                 sh 'mvn jar:jar'
-//                 echo 'packaged'
-//             }
-//         }
     }
 
 }
