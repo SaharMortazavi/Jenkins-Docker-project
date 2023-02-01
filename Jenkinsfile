@@ -21,6 +21,37 @@ pipeline {
                 }
             }
         }
+        stage('compile') {
+            steps {
+                dir('backend'){
+                    echo 'start compiling...'
+                    sh 'pwd'
+                    sh 'mvn compile'
+                    sh 'pwd'
+                }
+            }
+        }
+        stage('test-compile') {
+            steps {
+                dir('backend'){
+                    echo 'start test-compiling...'
+                    sh 'pwd'
+                    sh 'mvn test-compile'
+                    sh 'pwd'
+                }
+            }
+        }
+        stage('test') {
+            steps {
+                dir('backend'){
+                    echo 'start testing...'
+                    sh 'pwd'
+                    sh 'mvn test'
+                    sh 'pwd'
+                }
+            }
+        }
+
 
         stage('build') {
             steps {
@@ -41,14 +72,6 @@ pipeline {
                 }
             }
         }
-
-//         stage('test') {
-//             steps {
-//                 echo 'starting test.....'
-//                 sh 'mvn surefire:test'
-//                 echo 'finished test'
-//             }
-//         }
 //
 //         stage('package') {
 //             steps {
@@ -59,11 +82,4 @@ pipeline {
 //         }
     }
 
-//     post {
-//         always {
-//             echo 'generating test report....'
-//             junit 'target/*reports/**/*.xml'
-//             echo 'test report generated'
-//         }
-//     }
 }
