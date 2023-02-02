@@ -74,7 +74,9 @@ pipeline {
     post{
         always{
             echo "pipeline is finished now and it took ${currentBuild.durationString.minus(' and counting')}."
+	    dir('backend'){
 	    junit 'target/*reports/**/*.xml'
+	    }
         }
         success{
             echo 'blow your trumpets Gabriel.'
